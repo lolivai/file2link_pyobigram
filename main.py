@@ -8,7 +8,7 @@ import asyncio
 BOT_TOKEN = ''
 API_ID = ''
 API_HASH = ''
-HOST_ = 'http://pyobigram.f2link.ydns.eu/'
+HOST_ = 'http://pyobigram.file2link.ydns.eu/'
 
 bot:ObigramClient = None
 
@@ -21,7 +21,7 @@ async def get_file(request):
     if bot:
         msg = bot.mtp_gen_message(int(chatid),int(msgid))
         stream = await bot.async_get_info_stream(msg)
-        headers = MultiDict({'Content-Disposition':'attachment; filename="'+stream['fname']+'"','Content-Lenght':stream['fsize']})
+        headers = MultiDict({'Content-Disposition':'attachment; filename="'+stream['fname']+'"','Content-Length':str(stream['fsize'])})
         return web.Response(body=stream['body'],headers=headers)
     return web.Response(text='404 NOT FOUND')
 
@@ -40,7 +40,6 @@ def onmessage(update,bot:ObigramClient):
         reply_markup = inlineKeyboardMarkup(r1=[
             inlineKeyboardButton('🌀Url File🌀', url=url)
         ])
-        finfo = bot.mtp_get_file_info(message)
         resp_text = f'{filename} ✅'
         bot.edit_message(msg,resp_text,reply_markup=reply_markup)
     elif '/start' in message.text:

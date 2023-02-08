@@ -5,9 +5,9 @@ from aiohttp import web
 import threading
 import asyncio
 
-BOT_TOKEN = ''
-API_ID = ''
-API_HASH = ''
+BOT_TOKEN = '5771404942:AAFS-GEMAJDbtajUbxnyDpDN9rMHEj10_Y4'
+API_ID = '13233271'
+API_HASH = 'e3ce8145aa657c2a4cc5cf0f7183e476'
 HOST_ = 'http://pyobigram.file2link.ydns.eu/'
 
 bot:ObigramClient = None
